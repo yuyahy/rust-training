@@ -51,8 +51,7 @@ fn main() {
     }
 }
 
-// Option<i8>は加算が実装されていないので、エラー
-// fn invalid_add_to_Option() {
+// Option<i8>は加算が実装されていないので、エラー// fn invalid_add_to_Option() {
 //     let x: i8 = 5;
 //     let y: Option<i8> = Some(5);
 
