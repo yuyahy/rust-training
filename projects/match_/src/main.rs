@@ -47,10 +47,21 @@ fn place_holder_example(some_u8_value: u8) {
     }
 }
 
+fn if_let_example(some_u8_value: Option<u8>) {
+    // ある特定の値のみ処理したい場合は、if letを使う(if let - elseもできる)
+    // ※コンパイラによる網羅チェックは行われない事に注意
+    if let Some(3) = some_u8_value {
+        println!("three by if let")
+    }
+}
+
 fn main() {
     value_in_cents(Coin::Quarter(UsState::Alabama));
 
     let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
+
+    let three = Some(3);
+    if_let_example(three)
 }
