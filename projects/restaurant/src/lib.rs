@@ -1,18 +1,31 @@
+// 同じクレート or モジュールで定義された複数のライブラリをimportしたい時は
+// 以下の様にまとめることができる
+use std::{cmp::Ordering, io};
+
 // モジュールの定義
-mod front_of_house {
-    // モジュールの定義
-    pub mod hosting {
-        // モジュール内の関数(public)
-        pub fn add_to_waitlist() {}
-        // fn seat_at_table() {}
-    }
-}
+mod front_of_house;
+// mod front_of_house {
+//     // モジュールの定義
+//     pub mod hosting {
+//         // モジュール内の関数(public)
+//         pub fn add_to_waitlist() {}
+//         // fn seat_at_table() {}
+//     }
+// }
+// 絶対パス
+use crate::front_of_house::hosting;
+// 以下の様に使用したいモジュールのフルパスで指定するのはRustでは一般的ではない
+// →呼び出し時に親モジュールがわからなくなるので
+// use crate::front_of_house::hosting::add_to_waitlist();
+// 相対パス
+// use self::front_of_house::hosting;
 
 // eat_at_restaurant()とfront_of_houseは同じモジュール内で定義されている(兄弟)ため、
 // front_of_houseをpubnにしなくてもeat_at_restaurant()から呼べる
 pub fn eat_at_restaurant() {
     // absolute path
-    crate::front_of_house::hosting::add_to_waitlist();
+    // crate::front_of_house::hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
     front_of_house::hosting::add_to_waitlist();
 
     let mut meal = back_of_house::Breakfast::summer("Rye");
