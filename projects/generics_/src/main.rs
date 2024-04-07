@@ -21,16 +21,20 @@
 //     largest
 // }
 
-// //　ジェネリクスでより汎用的な関数にする
-// fn largest<T>(list: &[T]) -> T {
-//     let mut largest = list[0];
-//     for &item in list.iter() {
-//         if item > largest {
-//             largest = item;
-//         }
-//     }
-//     largest
-// }
+//　ジェネリクスでより汎用的な関数にする
+// fn largest<T: PartialOrd>(list: &[T]) -> T {
+// 比較演算とCopyが必要なのでトレイト境界に指定する
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+    // Copy traitが実装されていない型:Tの場合、ここでムーブが発生するが、
+    // listは不変参照なのでムーブ不可。よってコンパイルエラーになる
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
 
 // ここでxとyはそれぞれ異なる型を想定している点に注意
 struct Point<T, U> {
