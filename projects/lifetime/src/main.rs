@@ -1,0 +1,16 @@
+// 引数によって、x or yのどちらの参照を返却するかが変わるため、
+// コンパイラは所有権の生存期間(ライフタイム)が分からない
+fn longest(x: &str, y: &str) -> &str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+fn main() {
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    let result = longest(string1.as_str(), string2);
+    println!("The longest string is {}", result);
+}
