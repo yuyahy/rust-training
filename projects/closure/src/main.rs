@@ -84,6 +84,14 @@ fn main() {
     // 乱数(生成されるトレーニングにバリエーションをもたせるため)
     let simulated_random_number = 7;
 
+    let return_given = |x| {
+        println!("given parameter : {}", x);
+        x
+    };
+
+    let tmp = return_given(7);
+    // let tmp = return_given(String::from("Error"));
+
     generate_workout(simulated_user_specified_value, simulated_random_number);
     capture_closure_example();
 }
