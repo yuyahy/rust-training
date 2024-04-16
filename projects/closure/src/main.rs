@@ -26,7 +26,10 @@ fn generate_workout(intensity: u32, random_number: u32) {
         if random_number == 3 {
             println!("Take a break today!");
         } else {
-            println!("Today, run for {} minutes!", expensive_closure.value(intensity));
+            println!(
+                "Today, run for {} minutes!",
+                expensive_closure.value(intensity)
+            );
         }
     }
 }
@@ -45,7 +48,10 @@ where
 {
     // valueフィールドは内部的に変更されるので、生成時はNone
     fn new(calculation: T) -> Cacher<T> {
-        Cacher { calculation, value: None }
+        Cacher {
+            calculation,
+            value: None,
+        }
     }
 
     fn value(&mut self, arg: u32) -> u32 {
